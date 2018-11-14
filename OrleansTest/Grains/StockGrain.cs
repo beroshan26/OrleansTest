@@ -29,17 +29,20 @@ namespace Stocks.Grains
 
         async Task UpdatePrice(object stock)
         {
-            // collect the task variables without awaiting
-            var priceTask = GetPriceQuote(stock as string);
-            var graphDataTask = GetDailySeries(stock as string);
-
-            // await both tasks
-            await Task.WhenAll(priceTask, graphDataTask);
-
-            // read the results
-            price = priceTask.Result;
-            graphData = graphDataTask.Result;
+            price = await GetPriceQuote(stock as string);
             Console.WriteLine(price);
+
+            //// collect the task variables without awaiting
+            //var priceTask = GetPriceQuote(stock as string);
+            //var graphDataTask = GetDailySeries(stock as string);
+
+            //// await both tasks
+            //await Task.WhenAll(priceTask, graphDataTask);
+
+            //// read the results
+            //price = priceTask.Result;
+            //graphData = graphDataTask.Result;
+            //Console.WriteLine(price);
         }
 
         async Task<string> GetPriceQuote(string stock)
