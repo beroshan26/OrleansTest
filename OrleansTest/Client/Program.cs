@@ -30,7 +30,7 @@ namespace Client
                     var result = friend.SayHelloAsync("Hello!");
 
                     Console.ReadLine();
-                    break;
+                    //break;
                 }
                 catch (SiloUnavailableException)
                 {
