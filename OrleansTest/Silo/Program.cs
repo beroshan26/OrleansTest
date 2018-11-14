@@ -1,5 +1,6 @@
 ﻿using Interfaces;
 using Orleans;
+using Grains;
 using Orleans.Runtime.Host;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Stocks.Interfaces;
 
 namespace Silo
 {
@@ -52,5 +54,51 @@ namespace Silo
                 siloHost = null;
             }
         }
+
+        //private static async Task<int> RunMainAsync()
+        //{
+        //    try
+        //    {
+        //        var host = await StartSilo();
+        //        Console.WriteLine("Press Enter to terminate...");
+        //        var client = host.Services.GetRequiredService<IClusterClient>();
+
+        //        var stockGrain = client.GetGrain<IStockGrain>("MSFT");
+
+        //        var price = await stockGrain.GetPrice();
+
+        //        Console.WriteLine("Price is \n{0}", price);
+
+        //        Console.ReadLine();
+
+        //        await host.StopAsync();
+
+        //        return 0;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex);
+        //        return 1;
+        //    }
+        //}
+
+        //private static async Task<ISiloHost> StartSilo()
+        //{
+        //    // define the cluster configuration
+        //    var builder = new SiloHostBuilder()
+        //        .UseLocalhostClustering()
+        //        .Configure<ClusterOptions>(options =>
+        //        {
+        //            options.ClusterId = "dev";
+        //            options.ServiceId = "StocksSampleApp";
+        //        })
+        //        .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(StockGrain).Assembly).WithReferences())
+        //        .ConfigureLogging(logging => logging.AddConsole())
+        //        .EnableDirectClient();
+
+        //    var host = builder.Build();
+        //    await host.StartAsync();
+        //    return host;
+        //}
     }
 }
